@@ -24,9 +24,9 @@ module.exports = {
   },
 
   onStart: async function ({ message, prefix }) {
-    const botPrefix = prefix; // Use the provided bot prefix
-    const authorName = "KaizenJi";
-    const authorFB = "https://www.facebook.com/known.as.kaizenji";
+    const botPrefix = "+"; // Use the provided bot prefix
+    const authorName = "Vincent Armenion";
+    const authorFB = "https://www.facebook.com/profile.php?id=61556788957610";
 
     const now = moment();
     const date = now.format('MMMM Do YYYY');
@@ -38,13 +38,13 @@ module.exports = {
     const days = Math.floor(uptime / (60 * 60 * 24));
     const uptimeString = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
 
-    const additionalText = "";
+    const additionalText = "Edit by Kyle";
 
     // Combine the bot information and additional text in a single message
 message.reply(`======[𝗕𝗼𝘁 𝗶𝗻𝗳𝗼:]======
 𝗕𝗼𝘁 𝗽𝗿𝗲𝗳𝗶𝘅: ${botPrefix}
 
-𝗕𝗼𝘁 𝗻𝗮𝗺𝗲 : LuB0T
+𝗕𝗼𝘁 𝗻𝗮𝗺𝗲 : VINCENT AI
 
 𝗢𝘄𝗻𝗲𝗿: ${authorName}
  
