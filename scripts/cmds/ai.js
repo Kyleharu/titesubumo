@@ -52,8 +52,8 @@ mentions: __
 }
 module.exports = {
 config: {
- name: "tanjiro",
-aliases: ["ai", " tanjiro"],
+ name: "Vincent",
+aliases: ["ai", "vin"],
 version: 1.6,
 author: "Jun",
 role: 0,
