@@ -1,18 +1,15 @@
-const moment = require("moment-timezone");
-const manilaTime = moment.tz('Asia/Manila');
-        const formattedDateTime = manilaTime.format('MMMM D, YYYY h:mm A');
 const fs = require("fs-extra");
 const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "GoatBot V2"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
+const doNotDelete = "KYLE AI"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
 
 module.exports = {
   config: {
     name: "help",
     version: "1.17",
-    author: "NTKhang", // original author Kshitiz 
+    author: "NTKhang", // original author Kshitiz // edit Aesther
     countDown: 5,
     role: 0,
     shortDescription: {
@@ -21,7 +18,7 @@ module.exports = {
     longDescription: {
       en: "View command usage and list all commands directly",
     },
-    category: "Info 📜",
+    category: "info",
     guide: {
       en: "{pn} / help cmdName ",
     },
@@ -37,7 +34,7 @@ module.exports = {
       const categories = {};
       let msg = "";
 
-      msg += ``; // replace with your name 
+      msg += `𝗝𝗠 𝗖𝗠𝗗 𝗟𝗜𝗦𝗧◈|𓃵|`; //  Aesther Edit
 
       for (const [name, value] of commands) {
         if (value.config.role > 1 && role < value.config.role) continue;
@@ -49,11 +46,10 @@ module.exports = {
 
       Object.keys(categories).forEach((category) => {
         if (category !== "info") {
-          msg += `\n\n『  ${category.toUpperCase()}  』\n`;
-
-          const names = categories[category].commands.sort();
+          msg += ` \n ${category.toUpperCase()}`;
+const names = categories[category].commands.sort();
           for (let i = 0; i < names.length; i += 3) {
-            const cmds = names.slice(i, i + 3).map((item) => ` ${item},`);
+            const cmds = names.slice(i, i + 3).map((item) => `\n   ➥${item}`);
             msg += ` ${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
           }
 
@@ -62,10 +58,21 @@ module.exports = {
       });
 
       const totalCommands = commands.size;
+      msg += `\n𝗧𝗢𝗧𝗔𝗟 𝗖𝗺𝗱 [${totalCommands}📑]\n》𝙲𝚁𝙴𝙰𝚃𝙾𝚁:\n𝗞𝗬𝗟𝗘 𝗕𝗔𝗜𝗧-𝗜𝗧\n》𝙰𝙳𝙼𝙸𝙽: 𝗗𝗘𝗥𝗘𝗖𝗞 𝗢𝗕𝗢𝗭𝗔`;
       msg += ``;
-      msg += `\n\n🗓 | ⏰ 𝗗𝗮𝘁𝗲 𝗔𝗻𝗱 𝗧𝗶𝗺𝗲:\n${formattedDateTime}\n✨ | 𝗧𝗔𝗡𝗝𝗜𝗥𝗢 𝗞𝗔𝗠𝗔𝗗𝗢\n𝗕𝗬 𝗦𝗬𝗠𝗘𝗥 𝗦𝗧𝗘𝗩𝗘 (𝗠𝗥𝗞𝗜𝗠𝗦𝗧𝗘𝗥𝗦)\n𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 » ${totalCommands}`; // its not decoy so change it if you want 
+      msg += ``; // its not decoy so change it if you want 
 
-      await message.reply(msg);
+      const helpListImages = [
+        "https://i.imgur.com/qTdcdKn.jpeg", // add image link here
+
+      ];
+
+      const helpListImage = helpListImages[Math.floor(Math.random() * helpListImages.length)];
+
+      await message.reply({
+        body: msg,
+        attachment: await global.utils.getStreamFromURL(helpListImage),
+      });
     } else {
       const commandName = args[0].toLowerCase();
       const command = commands.get(commandName) || commands.get(aliases.get(commandName));
@@ -82,7 +89,22 @@ module.exports = {
         const guideBody = configCommand.guide?.en || "No guide available.";
         const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-        const response = `「 𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗛𝗘𝗟𝗣 」\n\n𝖭𝖺𝗆𝖾 » ${configCommand.name} \n𝖠𝗎𝗍𝗁𝗈𝗋 » ${author} \n𝖠𝗅𝗂𝖺𝗌𝖾𝗌 » ${configCommand.aliases ? configCommand.aliases.join():"Do Not Have"} \n𝖣𝖾𝗌𝖼𝗋𝗂𝗉𝗍𝗂𝗈𝗇 » ${longDescription} \n𝖴𝗌𝖺𝗀𝖾 » ${usage}`;
+        const response = `╭── NAME ────⭓
+  │ ${configCommand.name}
+  ├── INFO
+  │ Description: ${longDescription}
+  │ Other names: ${configCommand.aliases ? configCommand.aliases.join(", ") : "Do not have"}
+  │ Other names in your group: Do not have
+  │ Version: ${configCommand.version || "1.0"}
+  │ Role: ${roleText}
+  │ Time per command: ${configCommand.countDown || 1}s
+  │ Author: ${author}
+  ├── Usage
+  │ ${usage}
+  ├── Notes
+  │ The content inside <XXXXX> can be changed
+  │ The content inside [a|b|c] is a or b or c
+  ╰━━━━━━━❖`;
 
         await message.reply(response);
       }
